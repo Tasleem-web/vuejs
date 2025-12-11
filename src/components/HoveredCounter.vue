@@ -5,10 +5,19 @@
 </template>
 
 <script>
-import CounterMixin from "../mixins/Counter";
+// import CounterMixin from "../mixins/Counter";
+import useCounter from "../composable/useCounter";
 export default {
   name: "ClickCounter",
-  mixins: [CounterMixin],
+  setup() {
+    const { count, incrementCounter } = useCounter();
+
+    return {
+      count,
+      incrementCounter,
+    };
+  },
+  // mixins: [CounterMixin],
 };
 </script>
 

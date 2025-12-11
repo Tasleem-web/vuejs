@@ -1,65 +1,34 @@
 <template>
-  <div>
-    <h2>Name - {{ name }}</h2>
-    <button @click="setName">Set new name</button>
-  </div>
-  <div>
-    <h2>Count - {{ count }}</h2>
-    <button @click="incrementCount">Increment Count</button>
-  </div>
+  <div>Mouse position is at: {{ x }}, {{ y }}</div>
+  <div v-if="loading">Loading...</div>
+  <div v-else-if="error">{{ error }}</div>
 
-  <div>
-    <h2>{{ first }} - {{ last }}</h2>
-    <button @click="changeHero">Change Hero</button>
-  </div>
+  <ul v-else style="list-style: decimal">
+    <li v-for="post in slicedData" :key="post.id">{{ post.title }}</li>
+  </ul>
+
+  <button @click="fetchData">Reload</button>
 </template>
 
 <script>
-import { reactive, ref, toRefs } from "vue";
+import { computed } from "vue";
+import useFetch from "./composable/useFetch";
+import useMouse from "./composable/useMouse";
 export default {
   name: "App",
-  data() {
-    return {
-      name: "Tasleem",
-    };
-  },
-  methods: {
-    setName() {
-      this.name = "Mohammad";
-    },
-  },
   setup() {
-    const count = ref(0);
+    const { data, loading, error, fetchData } = useFetch(
+      "https://jsonplaceholder.typicode.com/posts"
+    );
+    const { x, y } = useMouse();
 
-    const state = reactive({
-      first: "Tasleem",
-      last: "Mohammad",
+    const slicedData = computed(() => {
+      return data.value.slice(0, 20);
     });
 
-    function incrementCount() {
-      count.value++;
-    }
-
-    function changeHero() {
-      (state.first = "Umme"), (state.last = "Rubab");
-    }
-
-    return {
-      count,
-      incrementCount,
-      ...toRefs(state),
-      changeHero,
-    };
+    return { data, loading, error, fetchData, x, y, slicedData };
   },
 };
 </script>
 
-<style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-}
-</style>
+<style scoped></style>
