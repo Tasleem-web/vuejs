@@ -4,23 +4,28 @@
     aria-labelledby="dropdownMenuButton1"
     @click.stop
   >
-    <div>
+    <div v-for="product in cart" :key="product.product.id">
       <div class="d-flex px-2 justify-content-between">
         <div>
-          <strong>Product title</strong>
+          <strong>{{ product.product.title }}</strong>
           <br />
-          1 x $32
+          {{ product.quantity }} x ${{ product.product.price }}
         </div>
         <div>
-          <a class="badge bg-secondary text-decoration-none" href="#">remove</a>
+          <a
+            class="badge bg-secondary text-decoration-none"
+            href="#"
+            @click="removeProduct(product)"
+            >remove</a
+          >
         </div>
       </div>
       <hr />
-      <div class="d-flex justify-content-between">
-        <div>Total : $23</div>
-        <div>
-          <a href="#">Clear Cart</a>
-        </div>
+    </div>
+    <div class="d-flex justify-content-between">
+      <div>Total : ${{ totalItemCost }}</div>
+      <div>
+        <a href="#">Clear Cart</a>
       </div>
     </div>
   </div>
@@ -29,6 +34,24 @@
 <script>
 export default {
   name: "MiniCart",
+  computed: {
+    cart() {
+      return this.$store.state.cart;
+    },
+    totalItemCost() {
+      return this.cart.reduce((acc, item) => {
+        return acc + item.quantity * item.product.price;
+      }, 0).toFixed(2);
+    },
+  },
+  methods: {
+    removeProduct(product) {
+      this.$store.dispatch("removeProduct", product.product.id);
+    },
+  },
+  mounted() {
+    this.$store.dispatch("getCartItems");
+  },
 };
 </script>
 

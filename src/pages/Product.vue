@@ -9,7 +9,7 @@
 
       <div class="d-flex">
         <input type="text" class="text-center col-1 me-2 p-1 rounded" />
-        <button class="btn btn-primary">Add to cart</button>
+        <button class="btn btn-primary" @click="addToCart">Add to cart</button> 
       </div>
 
       <p class="mt-4">
@@ -29,6 +29,14 @@ export default {
   computed: {
     product() {
       return this.$store.state.product;
+    },
+  },
+  methods: {
+    addToCart() {
+      return this.$store.dispatch("addToCart", {
+        product: this.product,
+        quantity: 1,
+      });
     },
   },
 };

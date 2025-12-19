@@ -16,16 +16,16 @@
           </button>
           <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
             <div class="navbar-nav">
-              <a class="nav-link active" aria-current="page" href="#">Home</a>
-              <a class="nav-link" href="#">Product</a>
-              <!-- <router-link
+              <!-- <a class="nav-link active" aria-current="page" href="#">Home</a>
+              <a class="nav-link" href="#">Product</a> -->
+              <router-link
                 class="nav-link"
                 v-for="(navbar, index) in navbarItems"
                 :key="index"
                 :to="navbar.path"
               >
                 {{ navbar.name }}
-              </router-link> -->
+              </router-link>
             </div>
           </div>
         </div>
@@ -38,7 +38,7 @@
             data-bs-toggle="dropdown"
             aria-expanded="false"
           >
-            0 Cart
+            {{ productCounts }} Cart
           </button>
           <MiniCart />
         </div>
@@ -61,12 +61,17 @@ export default {
           name: "Home",
           path: "/",
         },
-        {
-          name: "Product",
-          path: "product",
-        },
+        // {
+        //   name: "Product",
+        //   path: "product",
+        // },
       ],
     };
+  },
+  computed: {
+    productCounts() {
+      return this.$store.getters.productCounts;
+    },
   },
 };
 </script>

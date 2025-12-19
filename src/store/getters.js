@@ -1,3 +1,3 @@
-export const exampleGetter = (state) => {
-  return state;
+export const productCounts = (state) => {
+  return state.cart.length;
 }
