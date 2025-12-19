@@ -22,3 +22,5 @@ yarn lint
 
 ### Customize configuration
 See [Configuration Reference](https://cli.vuejs.org/config/).
+
+https://youtu.be/JDR7_AHk9D4?si=L7YyQadccmZggYTk
