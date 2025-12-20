@@ -30,7 +30,7 @@
       <div>
         <a
           href="#"
-          @click.prevent="clearCartItems"
+          @click.prevent="clearCartItems(cart)"
           :class="cartTotalPrice == 0 && 'disabled pe-none'"
           :ariaDisabled="cartTotalPrice == 0"
         >
