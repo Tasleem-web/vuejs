@@ -46,11 +46,19 @@ import { mapGetters, mapState, mapActions } from "vuex";
 export default {
   name: "MiniCart",
   computed: {
-    ...mapState(["cart"]),
-    ...mapGetters(["cartTotalPrice"]),
+    ...mapState("cartModule", ["cart"]),
+    // ...mapState({
+    //   cart: (state) => state.cartModule.cart,
+    // }),
+    ...mapGetters("cartModule", ["cartTotalPrice"]),
   },
   methods: {
-    ...mapActions(["getCartItems", "clearCartItems", "removeProduct"]),
+    ...mapActions({
+      getCartItems: "cartModule/getCartItems",
+      clearCartItems: "cartModule/clearCartItems",
+      removeProduct: "productModule/removeProduct",
+    }),
+    // ...mapActions(["getCartItems", "clearCartItems", "removeProduct"]),
   },
   mounted() {
     this.getCartItems();

@@ -17,13 +17,18 @@ export default {
     ProductCart,
   },
   computed: {
-    ...mapState(["products"]),
+    ...mapState({
+      products: (state) => state.productModule.products,
+    }),
   },
   mounted() {
     this.getProducts();
   },
   methods: {
-    ...mapActions(["getProducts"]),
+    ...mapActions({
+      getProducts: "productModule/getProducts",
+    }),
+    // ...mapActions("productModule", ["getProducts"]),
   },
 };
 </script>

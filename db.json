@@ -4,7 +4,7 @@
       "id": "1",
       "title": "Wireless Headphones",
       "description": "Premium quality wireless headphones with noise cancellation",
-      "image": "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=300&h=200&fit=crop",
+      "image": "/product_images/Wireless_Headphones.jpeg",
       "price": 99.99,
       "created_at": "2023-11-01T10:00:00Z",
       "updated_at": "2023-11-01T10:00:00Z"
@@ -13,7 +13,7 @@
       "id": "2",
       "title": "USB-C Cable",
       "description": "Fast charging USB-C cable 6ft",
-      "image": "https://images.unsplash.com/photo-1625948515291-69613efd103f?w=300&h=200&fit=crop",
+      "image": "/product_images/USB_C_Cable.jpeg",
       "price": 12.99,
       "created_at": "2023-11-01T10:00:00Z",
       "updated_at": "2023-11-01T10:00:00Z"
@@ -22,7 +22,7 @@
       "id": "3",
       "title": "Phone Stand",
       "description": "Adjustable phone stand for desk",
-      "image": "https://images.unsplash.com/photo-1611532736597-de2d4265fba3?w=300&h=200&fit=crop",
+      "image": "/product_images/Phone_Stand.jpeg",
       "price": 15.99,
       "created_at": "2023-11-01T10:00:00Z",
       "updated_at": "2023-11-01T10:00:00Z"
@@ -31,7 +31,7 @@
       "id": "4",
       "title": "Screen Protector",
       "description": "Tempered glass screen protector",
-      "image": "https://images.unsplash.com/photo-1598327105666-5b89351aff97?w=300&h=200&fit=crop",
+      "image": "/product_images/Screen_Protector.jpeg",
       "price": 9.99,
       "created_at": "2023-11-01T10:00:00Z",
       "updated_at": "2023-11-01T10:00:00Z"
@@ -40,7 +40,7 @@
       "id": "5",
       "title": "Phone Case",
       "description": "Durable protective phone case",
-      "image": "https://images.unsplash.com/photo-1556656793-08538906a9f8?w=300&h=200&fit=crop",
+      "image": "/product_images/Phone_Case.jpeg",
       "price": 19.99,
       "created_at": "2023-11-01T10:00:00Z",
       "updated_at": "2023-11-01T10:00:00Z"
@@ -49,7 +49,7 @@
       "id": "6",
       "title": "Power Bank",
       "description": "20000mAh portable power bank",
-      "image": "https://images.unsplash.com/photo-1609091839311-d5365f9ff1c5?w=300&h=200&fit=crop",
+      "image": "/product_images/Power_Bank.jpeg",
       "price": 34.99,
       "created_at": "2023-11-01T10:00:00Z",
       "updated_at": "2023-11-01T10:00:00Z"
@@ -58,7 +58,7 @@
       "id": "7",
       "title": "Bluetooth Speaker",
       "description": "Portable wireless Bluetooth speaker",
-      "image": "https://images.unsplash.com/photo-1608043152269-423dbba4e7e1?w=300&h=200&fit=crop",
+      "image": "/product_images/Bluetooth_Speaker.jpeg",
       "price": 49.99,
       "created_at": "2023-11-01T10:00:00Z",
       "updated_at": "2023-11-01T10:00:00Z"
@@ -67,7 +67,7 @@
       "id": "8",
       "title": "Webcam HD",
       "description": "1080p HD webcam for streaming",
-      "image": "https://images.unsplash.com/photo-1612198188060-c7c2a3b66eae?w=300&h=200&fit=crop",
+      "image": "/product_images/Webcam_HD.jpeg",
       "price": 59.99,
       "created_at": "2023-11-01T10:00:00Z",
       "updated_at": "2023-11-01T10:00:00Z"
@@ -76,7 +76,7 @@
       "id": "9",
       "title": "Gaming Mouse",
       "description": "Professional gaming mouse RGB",
-      "image": "https://images.unsplash.com/photo-1527814050087-3793815479db?w=300&h=200&fit=crop",
+      "image": "/product_images/Gaming_Mouse.jpeg",
       "price": 39.99,
       "created_at": "2023-11-01T10:00:00Z",
       "updated_at": "2023-11-01T10:00:00Z"
@@ -85,7 +85,7 @@
       "id": "10",
       "title": "HDMI Cable",
       "description": "2.1 HDMI cable 6ft",
-      "image": "https://images.unsplash.com/photo-1611532736597-de2d4265fba3?w=300&h=200&fit=crop",
+      "image": "/product_images/HDMI_Cable.jpeg",
       "price": 14.99,
       "created_at": "2023-11-01T10:00:00Z",
       "updated_at": "2023-11-01T10:00:00Z"
@@ -94,7 +94,7 @@
       "id": "11",
       "title": "Laptop Cooler",
       "description": "Portable laptop cooling pad",
-      "image": "https://images.unsplash.com/photo-1611532736597-de2d4265fba3?w=300&h=200&fit=crop",
+      "image": "/product_images/Laptop_Cooler.jpeg",
       "price": 34.99,
       "created_at": "2023-11-01T10:00:00Z",
       "updated_at": "2023-11-01T10:00:00Z"
@@ -103,7 +103,7 @@
       "id": "12",
       "title": "Mouse Pad",
       "description": "Large extended gaming mouse pad",
-      "image": "https://images.unsplash.com/photo-1598327105666-5b89351aff97?w=300&h=200&fit=crop",
+      "image": "/product_images/Mouse_Pad.jpeg",
       "price": 19.99,
       "created_at": "2023-11-01T10:00:00Z",
       "updated_at": "2023-11-01T10:00:00Z"
@@ -112,7 +112,7 @@
       "id": "13",
       "title": "Earbuds Case",
       "description": "Protective case for wireless earbuds",
-      "image": "https://images.unsplash.com/photo-1556656793-08538906a9f8?w=300&h=200&fit=crop",
+      "image": "/product_images/Earbuds_Case.jpeg",
       "price": 12.99,
       "created_at": "2023-11-01T10:00:00Z",
       "updated_at": "2023-11-01T10:00:00Z"
@@ -121,7 +121,7 @@
       "id": "14",
       "title": "Wireless Charger",
       "description": "Fast wireless charging pad",
-      "image": "https://images.unsplash.com/photo-1609091839311-d5365f9ff1c5?w=300&h=200&fit=crop",
+      "image": "/product_images/Wireless_Charger.jpeg",
       "price": 29.99,
       "created_at": "2023-11-01T10:00:00Z",
       "updated_at": "2023-11-01T10:00:00Z"
@@ -130,7 +130,7 @@
       "id": "15",
       "title": "Phone Tripod",
       "description": "Portable phone tripod for video",
-      "image": "https://images.unsplash.com/photo-1611532736579-6b16e2b50449?w=300&h=200&fit=crop",
+      "image": "/product_images/Phone_Tripod.jpeg",
       "price": 22.99,
       "created_at": "2023-11-01T10:00:00Z",
       "updated_at": "2023-11-01T10:00:00Z"
@@ -138,46 +138,32 @@
   ],
   "cart": [
     {
-      "id": "bf78",
-      "productId": "8",
+      "id": "9a7d",
+      "productId": "2",
       "product": {
-        "id": "8",
-        "title": "Webcam HD",
-        "description": "1080p HD webcam for streaming",
-        "image": "https://images.unsplash.com/photo-1612198188060-c7c2a3b66eae?w=300&h=200&fit=crop",
-        "price": 59.99,
+        "id": "2",
+        "title": "USB-C Cable",
+        "description": "Fast charging USB-C cable 6ft",
+        "image": "/product_images/USB_C_Cable.jpeg",
+        "price": 12.99,
         "created_at": "2023-11-01T10:00:00Z",
         "updated_at": "2023-11-01T10:00:00Z"
       },
       "quantity": 1
     },
     {
-      "id": "bf78",
-      "productId": "8",
+      "id": "8f67",
+      "productId": "1",
       "product": {
-        "id": "8",
-        "title": "Webcam HD",
-        "description": "1080p HD webcam for streaming",
-        "image": "https://images.unsplash.com/photo-1612198188060-c7c2a3b66eae?w=300&h=200&fit=crop",
-        "price": 59.99,
+        "id": "1",
+        "title": "Wireless Headphones",
+        "description": "Premium quality wireless headphones with noise cancellation",
+        "image": "/product_images/Wireless_Headphones.jpeg",
+        "price": 99.99,
         "created_at": "2023-11-01T10:00:00Z",
         "updated_at": "2023-11-01T10:00:00Z"
       },
-      "quantity": 2
-    },
-    {
-      "id": "bf78",
-      "productId": "8",
-      "product": {
-        "id": "8",
-        "title": "Webcam HD",
-        "description": "1080p HD webcam for streaming",
-        "image": "https://images.unsplash.com/photo-1612198188060-c7c2a3b66eae?w=300&h=200&fit=crop",
-        "price": 59.99,
-        "created_at": "2023-11-01T10:00:00Z",
-        "updated_at": "2023-11-01T10:00:00Z"
-      },
-      "quantity": 2
+      "quantity": 1
     }
   ],
   "comments": [

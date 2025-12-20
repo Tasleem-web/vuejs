@@ -34,7 +34,9 @@ export default {
     };
   },
   computed: {
-    ...mapState(["product"]),
+    ...mapState({
+      product: (state) => state.productModule.product,
+    }),
   },
   mounted() {
     this.getProduct(this.id);
@@ -42,7 +44,8 @@ export default {
     // this.$store.dispatch("getProduct", this.id);
   },
   methods: {
-    ...mapActions(["getProduct", "addProductToCart"]),
+    ...mapActions("productModule", ["getProduct"]),
+    ...mapActions("cart", ["addProductToCart"]),
     addToCart() {
       this.addProductToCart({
         product: this.product,

@@ -36,7 +36,7 @@
             data-bs-toggle="dropdown"
             aria-expanded="false"
           >
-            {{ productCounts }} Cart
+            {{ cartCounts }} Cart
           </button>
           <MiniCart />
         </div>
@@ -68,12 +68,15 @@ export default {
     };
   },
   // computed: mapGetters({
-  //   productCounts: "productCounts",
+  //   cartCounts: "cartCounts",
   // }),
   // more then one and same name
-  // computed: mapGetters(["productCounts"]),
+  // computed: mapGetters(["cartCounts"]),
   computed: {
-    ...mapGetters(["productCounts"]),
+    ...mapGetters({
+      cartCounts: "cartModule/cartCounts",
+    }),
+    // ...mapGetters("productModule", ["cartCounts"]),
   },
 };
 </script>
