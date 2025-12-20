@@ -16,8 +16,6 @@
           </button>
           <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
             <div class="navbar-nav">
-              <!-- <a class="nav-link active" aria-current="page" href="#">Home</a>
-              <a class="nav-link" href="#">Product</a> -->
               <router-link
                 class="nav-link"
                 v-for="(navbar, index) in navbarItems"
@@ -48,6 +46,7 @@
 </template>
 
 <script>
+import { mapGetters } from "vuex";
 import MiniCart from "./MiniCart.vue";
 export default {
   name: "AppHeader",
@@ -68,10 +67,13 @@ export default {
       ],
     };
   },
+  // computed: mapGetters({
+  //   productCounts: "productCounts",
+  // }),
+  // more then one and same name
+  // computed: mapGetters(["productCounts"]),
   computed: {
-    productCounts() {
-      return this.$store.getters.productCounts;
-    },
+    ...mapGetters(["productCounts"]),
   },
 };
 </script>

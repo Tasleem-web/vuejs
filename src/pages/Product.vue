@@ -8,8 +8,12 @@
       <h3>${{ product.price }}</h3>
 
       <div class="d-flex">
-        <input type="text" class="text-center col-1 me-2 p-1 rounded" />
-        <button class="btn btn-primary" @click="addToCart">Add to cart</button> 
+        <input
+          type="text"
+          v-model.number="quantity"
+          class="text-center col-1 me-2 p-1 rounded"
+        />
+        <button class="btn btn-primary" @click="addToCart">Add to cart</button>
       </div>
 
       <p class="mt-4">
@@ -20,22 +24,29 @@
 </template>
 
 <script>
+import { mapActions, mapState } from "vuex";
 export default {
   name: "ProductComponent",
   props: ["id"],
-  mounted() {
-    this.$store.dispatch("getProduct", this.id);
+  data() {
+    return {
+      quantity: 1,
+    };
   },
   computed: {
-    product() {
-      return this.$store.state.product;
-    },
+    ...mapState(["product"]),
+  },
+  mounted() {
+    this.getProduct(this.id);
+    // ...mapActions
+    // this.$store.dispatch("getProduct", this.id);
   },
   methods: {
+    ...mapActions(["getProduct", "addProductToCart"]),
     addToCart() {
-      return this.$store.dispatch("addToCart", {
+      this.addProductToCart({
         product: this.product,
-        quantity: 1,
+        quantity: this.quantity,
       });
     },
   },

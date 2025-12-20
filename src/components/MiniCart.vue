@@ -4,7 +4,7 @@
     aria-labelledby="dropdownMenuButton1"
     @click.stop
   >
-    <div v-for="product in cart" :key="product.product.id">
+    <div v-for="product in cart" :key="product.id">
       <div class="d-flex px-2 justify-content-between">
         <div>
           <strong>{{ product.product.title }}</strong>
@@ -22,35 +22,38 @@
       </div>
       <hr />
     </div>
-    <div class="d-flex justify-content-between">
-      <div>Total : ${{ totalItemCost }}</div>
+    <div
+      class="d-flex justify-content-between"
+      :class="cartTotalPrice == 0 && 'text-body-tertiary'"
+    >
+      <div><strong>Total :</strong> ${{ cartTotalPrice }}</div>
       <div>
-        <a href="#">Clear Cart</a>
+        <a
+          href="#"
+          @click.prevent="clearCartItems"
+          :class="cartTotalPrice == 0 && 'disabled pe-none'"
+          :ariaDisabled="cartTotalPrice == 0"
+        >
+          Clear Cart
+        </a>
       </div>
     </div>
   </div>
 </template>
 
 <script>
+import { mapGetters, mapState, mapActions } from "vuex";
 export default {
   name: "MiniCart",
   computed: {
-    cart() {
-      return this.$store.state.cart;
-    },
-    totalItemCost() {
-      return this.cart.reduce((acc, item) => {
-        return acc + item.quantity * item.product.price;
-      }, 0).toFixed(2);
-    },
+    ...mapState(["cart"]),
+    ...mapGetters(["cartTotalPrice"]),
   },
   methods: {
-    removeProduct(product) {
-      this.$store.dispatch("removeProduct", product.product.id);
-    },
+    ...mapActions(["getCartItems", "clearCartItems", "removeProduct"]),
   },
   mounted() {
-    this.$store.dispatch("getCartItems");
+    this.getCartItems();
   },
 };
 </script>
@@ -58,5 +61,7 @@ export default {
 <style scoped>
 .dropdown-menu {
   min-width: 320px;
+  max-height: 60vh;
+  overflow-y: auto;
 }
 </style>

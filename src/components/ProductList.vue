@@ -9,19 +9,21 @@
 </template>
 
 <script>
+import { mapActions, mapState } from "vuex";
 import ProductCart from "./ProductCart.vue";
 export default {
   name: "ProductList",
   components: {
     ProductCart,
   },
-  mounted() {
-    this.$store.dispatch("getProducts");
-  },
   computed: {
-    products() {
-      return this.$store.state.products;
-    },
+    ...mapState(["products"]),
+  },
+  mounted() {
+    this.getProducts();
+  },
+  methods: {
+    ...mapActions(["getProducts"]),
   },
 };
 </script>
