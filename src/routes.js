@@ -12,5 +12,15 @@ export default [
     name: "product",
     component: Product,
     props: true
+  },
+  {
+    path: '/notes',
+    name: "notes",
+    component: () => import('./pages/Notes.vue'),
+    props: true
+  },
+  {
+    path: '/:catchAll(.*)',
+    redirect: '/'
   }
 ]

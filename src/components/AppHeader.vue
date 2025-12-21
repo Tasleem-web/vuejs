@@ -18,6 +18,7 @@
             <div class="navbar-nav">
               <router-link
                 class="nav-link"
+                :class="{ active: matchRoute(navbar.path) }"
                 v-for="(navbar, index) in navbarItems"
                 :key="index"
                 :to="navbar.path"
@@ -60,10 +61,10 @@ export default {
           name: "Home",
           path: "/",
         },
-        // {
-        //   name: "Product",
-        //   path: "product",
-        // },
+        {
+          name: "Notes",
+          path: "/notes",
+        },
       ],
     };
   },
@@ -77,6 +78,11 @@ export default {
       cartCounts: "cartModule/cartCounts",
     }),
     // ...mapGetters("productModule", ["cartCounts"]),
+  },
+  methods: {
+    matchRoute(path) {
+      return this.$route.path === path;
+    },
   },
 };
 </script>

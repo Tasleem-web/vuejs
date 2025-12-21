@@ -6,6 +6,7 @@ import * as mutations from './mutations';
 import * as actions from './actions';
 import productModule from "./modules/product";
 import cartModule from "./modules/cart";
+import notesModule from "./modules/notes";
 
 export default createStore({
   state,
@@ -15,6 +16,7 @@ export default createStore({
 
   modules: {
     productModule,
-    cartModule
+    cartModule,
+    notesModule
   }
 })
