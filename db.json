@@ -136,36 +136,7 @@
       "updated_at": "2023-11-01T10:00:00Z"
     }
   ],
-  "cart": [
-    {
-      "id": "9a7d",
-      "productId": "2",
-      "product": {
-        "id": "2",
-        "title": "USB-C Cable",
-        "description": "Fast charging USB-C cable 6ft",
-        "image": "/product_images/USB_C_Cable.jpeg",
-        "price": 12.99,
-        "created_at": "2023-11-01T10:00:00Z",
-        "updated_at": "2023-11-01T10:00:00Z"
-      },
-      "quantity": 1
-    },
-    {
-      "id": "8f67",
-      "productId": "1",
-      "product": {
-        "id": "1",
-        "title": "Wireless Headphones",
-        "description": "Premium quality wireless headphones with noise cancellation",
-        "image": "/product_images/Wireless_Headphones.jpeg",
-        "price": 99.99,
-        "created_at": "2023-11-01T10:00:00Z",
-        "updated_at": "2023-11-01T10:00:00Z"
-      },
-      "quantity": 1
-    }
-  ],
+  "cart": [],
   "comments": [
     {
       "id": "1",

@@ -15,7 +15,7 @@
           <a
             class="badge bg-secondary text-decoration-none"
             href="#"
-            @click="removeProduct(product)"
+            @click="removeItemFromCart(product)"
             >remove</a
           >
         </div>
@@ -56,9 +56,9 @@ export default {
     ...mapActions({
       getCartItems: "cartModule/getCartItems",
       clearCartItems: "cartModule/clearCartItems",
-      removeProduct: "productModule/removeProduct",
+      removeItemFromCart: "cartModule/removeItemFromCart",
     }),
-    // ...mapActions(["getCartItems", "clearCartItems", "removeProduct"]),
+    // ...mapActions(["getCartItems", "clearCartItems", "removeItemFromCart"]),
   },
   mounted() {
     this.getCartItems();

@@ -6,7 +6,6 @@ export default {
     return Api.get(END_POINT)
   },
   find(productId) {
-    console.log("Fetching product with ID:", productId);
     return Api.get(`${END_POINT}/${productId}`)
   }
 
