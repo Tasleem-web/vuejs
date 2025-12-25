@@ -40,6 +40,9 @@
     },
     "rules": {}
   },
+  "engines": {
+    "node": "22.x"
+  },
   "browserslist": [
     "> 1%",
     "last 2 versions",
