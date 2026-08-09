@@ -136,7 +136,78 @@
       "updated_at": "2023-11-01T10:00:00Z"
     }
   ],
-  "cart": [],
+  "cart": [
+    {
+      "id": "9614",
+      "productId": "4",
+      "product": {
+        "id": "4",
+        "title": "Screen Protector",
+        "description": "Tempered glass screen protector",
+        "image": "/product_images/Screen_Protector.jpeg",
+        "price": 9.99,
+        "created_at": "2023-11-01T10:00:00Z",
+        "updated_at": "2023-11-01T10:00:00Z"
+      },
+      "quantity": 1
+    },
+    {
+      "id": "4917",
+      "productId": "3",
+      "product": {
+        "id": "3",
+        "title": "Phone Stand",
+        "description": "Adjustable phone stand for desk",
+        "image": "/product_images/Phone_Stand.jpeg",
+        "price": 15.99,
+        "created_at": "2023-11-01T10:00:00Z",
+        "updated_at": "2023-11-01T10:00:00Z"
+      },
+      "quantity": 1
+    },
+    {
+      "id": "3afd",
+      "productId": "2",
+      "product": {
+        "id": "2",
+        "title": "USB-C Cable",
+        "description": "Fast charging USB-C cable 6ft",
+        "image": "/product_images/USB_C_Cable.jpeg",
+        "price": 12.99,
+        "created_at": "2023-11-01T10:00:00Z",
+        "updated_at": "2023-11-01T10:00:00Z"
+      },
+      "quantity": 1
+    },
+    {
+      "id": "3afd",
+      "productId": "2",
+      "product": {
+        "id": "2",
+        "title": "USB-C Cable",
+        "description": "Fast charging USB-C cable 6ft",
+        "image": "/product_images/USB_C_Cable.jpeg",
+        "price": 12.99,
+        "created_at": "2023-11-01T10:00:00Z",
+        "updated_at": "2023-11-01T10:00:00Z"
+      },
+      "quantity": 2
+    },
+    {
+      "id": "3afd",
+      "productId": "2",
+      "product": {
+        "id": "2",
+        "title": "USB-C Cable",
+        "description": "Fast charging USB-C cable 6ft",
+        "image": "/product_images/USB_C_Cable.jpeg",
+        "price": 12.99,
+        "created_at": "2023-11-01T10:00:00Z",
+        "updated_at": "2023-11-01T10:00:00Z"
+      },
+      "quantity": 2
+    }
+  ],
   "comments": [
     {
       "id": "1",

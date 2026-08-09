@@ -1,16 +1,21 @@
-import Home from './pages/Home.vue'
-import Product from './pages/Product.vue'
+import ReactiveForm from "./components/ReactiveForm.vue";
+import Home from "./pages/Home.vue";
+import Product from "./pages/Product.vue";
 
 export default [
   {
-    path: '/',
-    name: 'home',
-    component: Home
+    path: "/",
+    name: "home",
+    component: Home,
   },
   {
-    path: '/product/:id',
+    path: "/product/:id",
     name: "product",
     component: Product,
-    props: true
-  }
-]
+    props: true,
+  },
+  {
+    path: "/reactive-form",
+    component: ReactiveForm,
+  },
+];
