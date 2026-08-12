@@ -1,3 +1,4 @@
+import FormValidation from "./components/FormValidation.vue";
 import ReactiveForm from "./components/ReactiveForm.vue";
 import Home from "./pages/Home.vue";
 import Product from "./pages/Product.vue";
@@ -17,5 +18,9 @@ export default [
   {
     path: "/reactive-form",
     component: ReactiveForm,
+  },
+  {
+    path: "/form-validation",
+    component: FormValidation,
   },
 ];

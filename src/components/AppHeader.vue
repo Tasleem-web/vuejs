@@ -26,9 +26,9 @@
               </router-link>
             </div>
           </div>
-        </div> 
+        </div>
 
-        <div class="dropdown">
+        <!-- <div class="dropdown">
           <button
             class="btn btn-secondary dropdown-toggle"
             type="button"
@@ -39,19 +39,19 @@
             {{ cartCounts }} Cart
           </button>
           <MiniCart />
-        </div>
+        </div> -->
       </div>
     </nav>
   </div>
 </template>
 
 <script>
-import { mapGetters } from "vuex";
-import MiniCart from "./MiniCart.vue";
+// import { mapGetters } from "vuex";
+// import MiniCart from "./MiniCart.vue";
 export default {
   name: "AppHeader",
   components: {
-    MiniCart,
+    // MiniCart,
   },
   data() {
     return {
@@ -72,12 +72,12 @@ export default {
   // }),
   // more then one and same name
   // computed: mapGetters(["cartCounts"]),
-  computed: {
-    ...mapGetters({
-      cartCounts: "cartModule/cartCounts",
-    }),
-    // ...mapGetters("productModule", ["cartCounts"]),
-  },
+  // computed: {
+  //   ...mapGetters({
+  //     cartCounts: "cartModule/cartCounts",
+  //   }),
+  // ...mapGetters("productModule", ["cartCounts"]),
+  // },
 };
 </script>
 

@@ -7,6 +7,26 @@
       @change="updateValue($event.target.value)"
       @blur="handleBlur"
       class="form-control"
+      :class="[
+        'form-select',
+        {
+          'is-valid':
+            form &&
+            (form.touched || form.dirty) &&
+            !form.error &&
+            form.value !== '' &&
+            form.value !== null &&
+            form.value !== undefined,
+          'is-invalid': form && (form.touched || form.dirty) && !!form.error,
+          'pe-5':
+            form &&
+            (form.touched || form.dirty) &&
+            (!!form.error ||
+              (form.value !== '' &&
+                form.value !== null &&
+                form.value !== undefined)),
+        },
+      ]"
     >
       <option value="" disabled>
         {{ field.placeholder || "Select an option" }}

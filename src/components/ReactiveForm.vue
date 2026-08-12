@@ -4,6 +4,7 @@
       :formSchema="formSchema"
       :grid="formGrid"
       :buttonConfig="buttonConfig"
+      :formTitle="'Dynamic Form Example'"
     />
   </div>
 </template>
@@ -102,8 +103,74 @@ const formSchema = ref([
     validators: ["required"],
     placeholder: "Select a role",
     options: ["Developer", "Designer", "Manager"],
-    grid: { col: 5, row: 2, colSpan: 4, rowSpan: 0 },
+    grid: { col: 5, row: 2, colSpan: 4, rowSpan: 1 },
   },
+  {
+    id: "Indeterminate-checkbox",
+    label: "Indeterminate checkbox",
+    type: "checkbox",
+    placeholder: "John Doe",
+    validators: ["required"],
+    grid: { col: 1, row: 3, colSpan: 4 },
+    onBlur: handleNameBlur,
+    onUpdate: handleNameUpdate,
+  },
+  // {
+  //   id: "company",
+  //   label: "Company Details",
+  //   type: "group",
+  //   grid: { col: 1, row: 3, colSpan: 12 },
+  //   nestedFields: [
+  //     {
+  //       id: "companyName",
+  //       label: "Company Name",
+  //       type: "text",
+  //       validators: ["required"],
+  //       placeholder: "Acme Corp",
+  //       grid: { col: 1, row: 3, colSpan: 4 },
+  //     },
+  //     {
+  //       id: "department",
+  //       label: "Department",
+  //       type: "group",
+  //       grid: { col: 5, row: 3, colSpan: 4 },
+  //       nestedFields: [
+  //         {
+  //           id: "departmentName",
+  //           label: "Department Name",
+  //           validators: ["required"],
+  //           type: "text",
+  //           placeholder: "Engineering",
+  //           grid: { col: 5, row: 3, colSpan: 4 },
+  //         },
+  //         {
+  //           id: "team",
+  //           label: "Team",
+  //           type: "group",
+  //           grid: { col: 9, row: 3, colSpan: 4 },
+  //           nestedFields: [
+  //             {
+  //               id: "teamName",
+  //               label: "Team Name",
+  //               validators: ["required"],
+  //               type: "text",
+  //               placeholder: "Frontend",
+  //               grid: { col: 9, row: 3, colSpan: 4 },
+  //             },
+  //             {
+  //               id: "teamLead",
+  //               label: "Team Lead",
+  //               validators: ["required"],
+  //               type: "text",
+  //               placeholder: "Jane Doe",
+  //               grid: { col: 9, row: 4, colSpan: 4 },
+  //             },
+  //           ],
+  //         },
+  //       ],
+  //     },
+  //   ],
+  // },
   {
     id: "actions",
     type: "button",

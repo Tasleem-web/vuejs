@@ -1,125 +1,31 @@
 <template>
   <div class="form-container">
-    <h2>Dynamic Profile Form</h2>
+    <h2>{{ formTitle || "Dynamic Form" }}</h2>
 
     <form
+      id="dynamic-form-grid"
       @submit.prevent="handleSubmit"
-      class="form-grid"
+      class="form-grid needs-validation"
+      novalidate
       :style="{
         gridTemplateColumns: `repeat(${formGrid.value}, minmax(0, 1fr))`,
       }"
     >
       <!-- Loop dynamically through the schema -->
-      <div
+      <FieldRenderer
         v-for="field in formSchema"
         :key="field.id"
-        class="form-group"
-        :style="fieldGridStyle(field)"
-      >
-        <template v-if="field.type !== 'button'">
-          <label :for="field.id">
-            {{ field.label }}
-            <span
-              v-if="field.validators?.includes('required')"
-              class="required-indicator"
-              >*</span
-            >
-          </label>
-        </template>
-
-        <div
-          v-if="field.type === 'button'"
-          class="button-group"
-          :style="{ justifyContent: field.justifyContent }"
-        >
-          <FormButton
-            v-for="(button, index) in buttonConfigsFor(field)"
-            :key="index"
-            :config="button"
-            @click="handleButtonAction(field, button, $event)"
-          />
-        </div>
-
-        <!-- Render Select Dropdowns dynamically -->
-        <SelectDropdown
-          v-else-if="field.type === 'select'"
-          :field="{ ...field, value: formControls[field.id].value }"
-          :form="formControls[field.id]"
-          @update:field="(updated) => handleTextFieldUpdate(field, updated)"
-          @blur="handleFieldBlur(field)"
-        />
-
-        <!-- Render Standard Text/Email Inputs dynamically -->
-        <TextBox
-          v-else
-          :field="{ ...field, value: formControls[field.id].value }"
-          :form="formControls[field.id]"
-          @update:field="(updated) => handleTextFieldUpdate(field, updated)"
-          @blur="handleFieldBlur(field)"
-        />
-
-        <p
-          v-if="
-            formControls[field.id].error &&
-            (formControls[field.id].touched || formControls[field.id].dirty)
-          "
-          class="error-message"
-        >
-          {{ formControls[field.id].error }}
-        </p>
-
-        <div v-if="field.nestedFields" class="nested-fields">
-          <div
-            v-for="child in field.nestedFields"
-            :key="child.id"
-            class="nested-field"
-            :style="fieldGridStyle(child)"
-          >
-            <label :for="child.id">
-              {{ child.label }}
-              <span
-                v-if="child.validators?.includes('required')"
-                class="required-indicator"
-                >*</span
-              >
-            </label>
-
-            <SelectDropdown
-              v-if="child.type === 'select'"
-              :field="{ ...child, value: formControls[child.id].value }"
-              :form="formControls[child.id]"
-              @update:field="(updated) => handleTextFieldUpdate(child, updated)"
-              @blur="handleFieldBlur(child)"
-            />
-
-            <TextBox
-              v-else
-              :field="{ ...child, value: formControls[child.id].value }"
-              :form="formControls[child.id]"
-              @update:field="(updated) => handleTextFieldUpdate(child, updated)"
-              @blur="handleFieldBlur(child)"
-            />
-
-            <p
-              v-if="
-                formControls[child.id].error &&
-                (formControls[child.id].touched || formControls[child.id].dirty)
-              "
-              class="error-message"
-            >
-              {{ formControls[child.id].error }}
-            </p>
-          </div>
-        </div>
-      </div>
-
-      <!-- <div class="form-actions">
-        <FormButton :config="props.buttonConfig" />
-      </div> -->
+        :field="field"
+        :formControls="formControls"
+        :buttonConfigsFor="buttonConfigsFor"
+        :handleTextFieldUpdate="handleTextFieldUpdate"
+        :handleFieldBlur="handleFieldBlur"
+        :handleButtonAction="handleButtonAction"
+        :fieldGridStyle="fieldGridStyle"
+        :addArrayItem="addArrayItem"
+        :removeArrayItem="removeArrayItem"
+      />
     </form>
-
-    <!-- Visual snapshot of real-time reactivity -->
-    <!-- <pre>{{ formValues }}</pre> -->
   </div>
 </template>
 
@@ -132,14 +38,16 @@ import {
   watch,
   defineEmits,
 } from "vue";
-import TextBox from "./DynamicForm/components/TextBox.vue";
-import SelectDropdown from "./DynamicForm/components/SelectDropdown.vue";
-import FormButton from "./DynamicForm/components/FormButton.vue";
+import FieldRenderer from "./DynamicForm/components/FieldRenderer.vue";
 
 const props = defineProps({
   formSchema: {
     type: Array,
     default: () => [],
+  },
+  formTitle: {
+    type: String,
+    default: "Dynamic Form",
   },
   grid: {
     type: Number,
@@ -167,24 +75,55 @@ const formGrid = toRef(props, "grid");
 // 2. Initialize reactive controls for each field
 const formControls = reactive({});
 
+const clone = (value) => JSON.parse(JSON.stringify(value));
+
+const assignUniqueIds = (field, parentId = "field") => {
+  if (!field.id || field.id === parentId) {
+    field.id = generateFieldId(parentId);
+  }
+
+  if (field.nestedFields) {
+    field.nestedFields.forEach((child) => assignUniqueIds(child, field.id));
+  }
+
+  if (field.type === "array" && Array.isArray(field.items)) {
+    field.items.forEach((item) => assignUniqueIds(item, field.id));
+  }
+};
+
+const createControls = (fields) => {
+  fields.forEach((field) => {
+    if (field.type === "array" && Array.isArray(field.items)) {
+      if (field.items.length === 0 && field.itemTemplate) {
+        const templateCopy = clone(field.itemTemplate);
+        assignUniqueIds(templateCopy, field.id);
+        field.items.push(templateCopy);
+      }
+      createControls(field.items);
+      return;
+    }
+
+    formControls[field.id] = {
+      value: "",
+      touched: false,
+      dirty: false,
+      error: "",
+    };
+
+    if (field.nestedFields) {
+      createControls(field.nestedFields);
+    }
+  });
+};
+
 const resetControls = (schema) => {
   Object.keys(formControls).forEach((key) => {
     delete formControls[key];
   });
 
-  const createControls = (fields) => {
-    fields.forEach((field) => {
-      formControls[field.id] = {
-        value: "",
-        touched: false,
-        dirty: false,
-        error: "",
-      };
-      if (field.nestedFields) {
-        createControls(field.nestedFields);
-      }
-    });
-  };
+  if (Array.isArray(schema)) {
+    schema.forEach((field) => assignUniqueIds(field, "root"));
+  }
 
   createControls(schema);
 };
@@ -295,9 +234,17 @@ const validateForm = () => {
 
   const validateFields = (fields) => {
     fields.forEach((field) => {
-      if (!validateField(field)) {
-        valid = false;
+      if (field.type === "array" && Array.isArray(field.items)) {
+        field.items.forEach((item) => validateFields([item]));
+        return;
       }
+
+      if (field.type !== "group" && field.type !== "array") {
+        if (!validateField(field)) {
+          valid = false;
+        }
+      }
+
       if (field.nestedFields) {
         validateFields(field.nestedFields);
       }
@@ -348,6 +295,9 @@ const handleFieldBlur = (field) => {
   }
 };
 
+const generateFieldId = (base) =>
+  `${base}-${Math.random().toString(36).slice(2, 9)}`;
+
 const buttonConfigsFor = (field) => {
   const defaultConfig = {
     ...props.defaultButtonConfig,
@@ -370,6 +320,48 @@ const buttonConfigsFor = (field) => {
   }
 
   return [normalizeConfig(field.buttonConfig || {})];
+};
+
+const addArrayItem = (field) => {
+  const template = field.itemTemplate || field.items?.[0];
+  if (!template) {
+    console.warn("No item template defined for array field:", field.id);
+    return;
+  }
+
+  const newItem = clone(template);
+  if (typeof newItem.id === "undefined" || newItem.id === template.id) {
+    newItem.id = generateFieldId(field.id);
+  }
+
+  if (!Array.isArray(field.items)) {
+    field.items = [];
+  }
+  field.items.push(newItem);
+  createControls([newItem]);
+};
+
+const removeArrayItem = (field, index) => {
+  const item = field.items?.[index];
+  if (!item) {
+    return;
+  }
+
+  const deleteControls = (fields) => {
+    fields.forEach((child) => {
+      if (child.type === "array" && Array.isArray(child.items)) {
+        deleteControls(child.items);
+        return;
+      }
+      delete formControls[child.id];
+      if (child.nestedFields) {
+        deleteControls(child.nestedFields);
+      }
+    });
+  };
+
+  deleteControls([item]);
+  field.items.splice(index, 1);
 };
 
 const handleButtonAction = (field, button, event) => {
@@ -408,9 +400,17 @@ const handleSubmit = () => {
   if (!validateForm()) {
     const markTouched = (fields) => {
       fields.forEach((field) => {
-        formControls[field.id].touched = true;
+        const control = formControls[field.id];
+        if (control) {
+          control.touched = true;
+        }
+
         if (field.nestedFields) {
           markTouched(field.nestedFields);
+        }
+
+        if (field.type === "array" && Array.isArray(field.items)) {
+          field.items.forEach((item) => markTouched([item]));
         }
       });
     };
